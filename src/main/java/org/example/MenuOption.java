@@ -5,6 +5,7 @@ public class MenuOption {
     public static void menuOption(int choice) {
 
         if( choice == 1 ) {
+
             System.out.println("Here's the information about all staff");
         }
         else if ( choice == 2 ) {
