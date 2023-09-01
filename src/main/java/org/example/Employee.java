@@ -2,10 +2,9 @@ package org.example;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Employee extends Staff implements WorkerList {
+public class Employee extends Staff implements StaffDetailsProvider {
 
     private LocalDate startDate;
     private int paycheck;
@@ -17,18 +16,24 @@ public class Employee extends Staff implements WorkerList {
         this.paycheck = paycheck;
     }
 
+    @Override
+    public String toString() {
+        return "id: " + getId() +
+                ", gender: '" + getGender() + '\'' +
+                ", name: '" + getName() + '\'' +
+                ", startDate: " + startDate +
+                ", paycheck: " + paycheck;
+    }
+    /*
     public static String getStaffList() {
         StringBuilder sb = new StringBuilder();
-        employeeList.forEach(person -> {
-            sb.append(person.toString()); // Assuming each person has a meaningful toString() method
-            sb.append("\n");
-        });
-
+        for (Employee employee : employeeList) {
+            sb.append(employee.toString()).append("\n");
+        }
         return sb.toString();
     }
 
-
-
+*/
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -54,11 +59,23 @@ public class Employee extends Staff implements WorkerList {
     }
 
     @Override
+    public String retrieveStaffDetails() {
+        StringBuilder sb = new StringBuilder();
+        for (Employee employee : employeeList) {
+            sb.append(employee.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    /*
+    @Override
     public String staffList() {
         return null;
     }
 
 
+
+     */
    /* @Override
     public String staffList() {
         StringBuilder sb = new StringBuilder();

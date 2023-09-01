@@ -1,27 +1,27 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class Intern extends Staff implements WorkerList {
-    private Date endDate;
+public class Intern extends Staff implements StaffDetailsProvider {
+    private LocalDate endDate;
     private String quitMessage;
 
-    List<String> internList = new ArrayList<>();
+    static List<Intern> internList = new ArrayList<>();
 
-    public Intern(int id, String gender, String name, Date endDate, String quitMessage) {
+    public Intern(int id, String gender, String name, LocalDate endDate, String quitMessage) {
         super(id, gender, name);
 
         this.endDate = endDate;
         this.quitMessage = quitMessage;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -33,16 +33,30 @@ public class Intern extends Staff implements WorkerList {
         this.quitMessage = quitMessage;
     }
 
-    public List<String> getInternList() {
+    public List<Intern> getInternList() {
         return internList;
     }
 
-    public void setInternList(List<String> internList) {
+    public void setInternList(List<Intern> internList) {
         this.internList = internList;
     }
 
+
     @Override
-    public String staffList() {
-        return null;
+    public String toString() {
+        return "id: " + getId() +
+                ", gender: '" + getGender() + '\'' +
+                ", name: '" + getName() + '\'' +
+                ", endDate: " + endDate +
+                ", quitMessage: " + quitMessage;
+    }
+
+    @Override
+    public String retrieveStaffDetails() {
+        StringBuilder sb = new StringBuilder();
+        for (Intern intern : internList) {
+            sb.append(intern.toString()).append("\n");
+        }
+        return sb.toString();
     }
 }
