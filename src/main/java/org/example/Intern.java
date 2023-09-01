@@ -13,4 +13,20 @@ public class Intern extends Staff {
         this.endDate = endDate;
         this.quitMessage = quitMessage;
     }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getQuitMessage() {
+        return quitMessage;
+    }
+
+    public void setQuitMessage(String quitMessage) {
+        this.quitMessage = quitMessage;
+    }
 }
