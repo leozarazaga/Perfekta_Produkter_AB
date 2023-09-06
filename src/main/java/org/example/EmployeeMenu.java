@@ -136,6 +136,7 @@ public class EmployeeMenu {
 
                 System.out.println("Updated employee: " + employee);
                 return;
+
             }
         }
 
