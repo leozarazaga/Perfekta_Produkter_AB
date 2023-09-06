@@ -12,6 +12,7 @@ public class MenuOption {
                 System.out.println("List of all staffmembers: ");
                 System.out.println(employeeList);
                 System.out.println(internList);
+                System.out.println("Perfekta Produkter AB currently has " + (employeeList.size()+internList.size()) + " staff members.");
                 // printa ut antal staff
 
                 break;
@@ -25,27 +26,5 @@ public class MenuOption {
                 System.exit(0);
                 break;
         }
-
-
     }
-
-
-/*
-        if( choice == 1 ) {
-
-            System.out.println("Here's the information about all staff");
-        }
-        else if ( choice == 2 ) {
-            System.out.println("Here's info about all employees");
-        }
-        else if (choice == 3) {
-            System.out.println("Here's info about all the interns");
-        }
-        else System.out.println("Choose a valid option");
-    }
-
- */
-
-
-
 }

@@ -4,11 +4,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import static org.example.Employee.employeeList;
 import static org.example.Intern.internList;
 
 public class InternMenu {
     static Scanner scanner = new Scanner(System.in);
-    public static void InternMenu() {
+    public static void internMenu() {
 
         System.out.println("1. View all interns | 2. Add intern | 3. Remove intern | 4. Modify intern | 5. Back to main menu");
         int choice = scanner.nextInt();
@@ -21,7 +22,7 @@ public class InternMenu {
             addIntern();
             break;
         case 3:
-            //removeIntern();
+            removeIntern();
             break;
         case 4:
             //modifyIntern();
@@ -32,6 +33,7 @@ public class InternMenu {
     }
 
     }
+
     public static void addIntern() {
         System.out.println("Please enter ID of the new intern:");
         int id = scanner.nextInt();
@@ -53,3 +55,37 @@ public class InternMenu {
     }
 
 }
+
+
+    public static void removeIntern() {
+        //System.out.println(allEmployees);
+
+        System.out.println(internList);
+        System.out.println("\n Please enter the id of the intern you would like to delete.");
+        int id = scanner.nextInt();
+
+        for (Intern intern : internList) {
+            if (intern.getId() == id) {
+                internList.remove(intern);
+                System.out.println("Intern: " + intern.getName() + " has been removed.");
+
+                System.out.println(" \nPress Enter to return to the main menu...");
+                scanner.nextLine();
+                scanner.nextLine();
+                MenuChoice.mainMenu();
+
+                return;
+            }
+        }
+
+
+        System.out.println("Intern with ID " + id + " not found.");
+        System.out.println(" \nPress Enter to return to the main menu...");
+        scanner.nextLine();
+        scanner.nextLine();
+        MenuChoice.mainMenu();
+
+
+    }
+    }
+
