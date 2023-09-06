@@ -7,12 +7,12 @@ public class MenuOption {
 
     public static void menuOption(int choice) {
 
-
         switch (choice) {
             case 1:
                 System.out.println("List of all staffmembers: ");
                 System.out.println(employeeList);
                 System.out.println(internList);
+                // printa ut antal staff
 
                 break;
             case 2:
@@ -25,7 +25,7 @@ public class MenuOption {
 
             case 3:
                 // call a method that shows intern menu options
-
+                InternMenu.InternMenu();
                 break;
             case 4:
                 // method that exits the program

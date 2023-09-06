@@ -9,7 +9,7 @@ public class EmployeeMenu {
     static Scanner scanner = new Scanner(System.in);
 
     public static void employeeMenu() {
-        String allEmployees;
+
 /*
         Employee employee1 = new Employee(1, "female", "Carola", LocalDate.of(2023, 9, 1), 30);
         Employee employee2 = new Employee(2, "female", "Lina", LocalDate.of(2023, 11, 2), 40);
@@ -43,6 +43,7 @@ public class EmployeeMenu {
         switch (choice) {
             case 1:
                 // method that prints out all employees
+
                break;
             case 2:
                 // call method that adds an employee
@@ -57,8 +58,10 @@ public class EmployeeMenu {
                 break;
             case 4:
                 //method to modify an employee
+                //modifyEmployee();
                 break;
             case 5:
+                //calculateAverageWage();
                 //method to retrieve average wage (all/men/women)
                 break;
             case 6:
