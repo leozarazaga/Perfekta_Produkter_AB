@@ -148,6 +148,7 @@ public class EmployeeMenu {
     }
 
     public static void modifyEmployee() {
+        System.out.println("Hello World  testing-git");
         System.out.print("Employee ID: ");
         int modifyEmployeeID = scanner.nextInt();
 
@@ -197,7 +198,5 @@ public class EmployeeMenu {
         double totalSalary = employeeList.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / employeeList.size();
         System.out.println("Average salary for all employees are: " + averageSalary);
-
-
     }
 }
