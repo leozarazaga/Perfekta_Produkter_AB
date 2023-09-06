@@ -16,19 +16,13 @@ public class MenuOption {
 
                 break;
             case 2:
-                System.out.println();
-
-                // call a method that shows employee menu options
                 EmployeeMenu.employeeMenu();
-
                 break;
-
             case 3:
-                // call a method that shows intern menu options
                 InternMenu.InternMenu();
                 break;
             case 4:
-                // method that exits the program
+                System.exit(0);
                 break;
         }
 
