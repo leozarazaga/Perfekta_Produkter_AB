@@ -48,6 +48,7 @@ public class EmployeeMenu {
             case 2:
                 // call method that adds an employee
                 addEmployee();
+                System.out.println("Press to go back ↵");
 
                 break;
 
@@ -58,7 +59,7 @@ public class EmployeeMenu {
                 break;
             case 4:
                 //method to modify an employee
-                //modifyEmployee();
+                modifyEmployee();
                 break;
             case 5:
                 //calculateAverageWage();
@@ -104,10 +105,17 @@ public class EmployeeMenu {
         //System.out.println(allEmployees);
         System.out.println("Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
+    }
+
+    public static void modifyEmployee(){
+        System.out.println("Employee ID: ");
+        int modifyEmployeeID = scanner.nextInt();
+        Employee.employeeList.contains(modifyEmployeeID);
+
+        System.out.println(modifyEmployeeID);
 
 
     }
-
 
 
 
