@@ -2,7 +2,11 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import static org.example.Employee.employeeList;
 
 public class EmployeeMenu {
 
@@ -43,7 +47,6 @@ public class EmployeeMenu {
         switch (choice) {
             case 1:
                 // method that prints out all employees
-
                break;
             case 2:
                 // call method that adds an employee
@@ -61,8 +64,9 @@ public class EmployeeMenu {
                 //modifyEmployee();
                 break;
             case 5:
-                //calculateAverageWage();
-                //method to retrieve average wage (all/men/women)
+                calculateAverageWage();
+                calculateAverageWageForWomen();
+                calculateAverageWageForMen();
                 break;
             case 6:
                 MenuChoice.mainMenu();
@@ -92,7 +96,7 @@ public class EmployeeMenu {
         int salary = scanner.nextInt();
 
         Employee employee = new Employee(id, gender, name, startDate, salary);
-        Employee.employeeList.add(employee);
+        employeeList.add(employee);
         System.out.println(employee);
 
         //String allEmployees = employee.retrieveStaffDetails();
@@ -104,10 +108,35 @@ public class EmployeeMenu {
         //System.out.println(allEmployees);
         System.out.println("Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
-
-
     }
 
+    public static void calculateAverageWageForMen() {
+        List<Employee> maleEmployees =
+                employeeList.
+                stream().filter(employee->"male".
+                        equals(employee.getGender())).collect(Collectors.toList());
+
+        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / maleEmployees.size();
+        System.out.println("Average salary for males: " + averageSalary);
+    }
+
+    public static void calculateAverageWageForWomen() {
+        List<Employee> femaleEmployees =
+                employeeList.
+                        stream().filter(employee->"female".
+                                equals(employee.getGender())).collect(Collectors.toList());
+
+        double totalSalary = femaleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / femaleEmployees.size();
+        System.out.println("Average salary for females: " + averageSalary);
+    }
+
+    public static void calculateAverageWage() {
+        double totalSalary = employeeList.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / employeeList.size();
+        System.out.println("Average salary for all employees are: " + averageSalary);
+    }
 
 
 
