@@ -4,17 +4,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Employee extends Staff implements StaffDetailsProvider {
+public class Employee extends Staff {
 
     private LocalDate startDate;
     private int paycheck;
-
-    static List<Employee> employeeList = new ArrayList<>();
+    public static List<Employee> employeeList = new ArrayList<>();
     public Employee(int id, String gender, String name, LocalDate startDate, int paycheck) {
         super(id, gender, name);
         this.startDate = startDate;
         this.paycheck = paycheck;
     }
+
 
     @Override
     public String toString() {
@@ -22,18 +22,9 @@ public class Employee extends Staff implements StaffDetailsProvider {
                 ", gender: '" + getGender() + '\'' +
                 ", name: '" + getName() + '\'' +
                 ", startDate: " + startDate +
-                ", paycheck: " + paycheck;
-    }
-    /*
-    public static String getStaffList() {
-        StringBuilder sb = new StringBuilder();
-        for (Employee employee : employeeList) {
-            sb.append(employee.toString()).append("\n");
-        }
-        return sb.toString();
+                ", paycheck: " + paycheck + "\n";
     }
 
-*/
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -58,6 +49,7 @@ public class Employee extends Staff implements StaffDetailsProvider {
         this.employeeList = employeeList;
     }
 
+    /*
     @Override
     public String retrieveStaffDetails() {
         StringBuilder sb = new StringBuilder();
@@ -67,15 +59,8 @@ public class Employee extends Staff implements StaffDetailsProvider {
         return sb.toString();
     }
 
-    /*
-    @Override
-    public String staffList() {
-        return null;
-    }
-
-
-
      */
+
    /* @Override
     public String staffList() {
         StringBuilder sb = new StringBuilder();

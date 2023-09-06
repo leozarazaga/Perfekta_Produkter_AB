@@ -1,5 +1,8 @@
 package org.example;
 
+import static org.example.Employee.employeeList;
+import static org.example.Intern.internList;
+
 public class MenuOption {
 
     public static void menuOption(int choice) {
@@ -8,9 +11,8 @@ public class MenuOption {
         switch (choice) {
             case 1:
                 System.out.println("List of all staffmembers: ");
-
-                //call a method that lists all the staff
-
+                System.out.println(employeeList);
+                System.out.println(internList);
 
                 break;
             case 2:

@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Intern extends Staff implements StaffDetailsProvider {
+public class Intern extends Staff {
     private LocalDate endDate;
     private String quitMessage;
 
-    static List<Intern> internList = new ArrayList<>();
+    public static List<Intern> internList = new ArrayList<>();
 
     public Intern(int id, String gender, String name, LocalDate endDate, String quitMessage) {
         super(id, gender, name);
@@ -48,9 +48,9 @@ public class Intern extends Staff implements StaffDetailsProvider {
                 ", gender: '" + getGender() + '\'' +
                 ", name: '" + getName() + '\'' +
                 ", endDate: " + endDate +
-                ", quitMessage: " + quitMessage;
+                ", quitMessage: " + quitMessage + "\n";
     }
-
+/*
     @Override
     public String retrieveStaffDetails() {
         StringBuilder sb = new StringBuilder();
@@ -59,4 +59,6 @@ public class Intern extends Staff implements StaffDetailsProvider {
         }
         return sb.toString();
     }
+
+ */
 }

@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class EmployeeMenu {
 
     static Scanner scanner = new Scanner(System.in);
+
     public static void employeeMenu() {
+        String allEmployees;
 /*
         Employee employee1 = new Employee(1, "female", "Carola", LocalDate.of(2023, 9, 1), 30);
         Employee employee2 = new Employee(2, "female", "Lina", LocalDate.of(2023, 11, 2), 40);
@@ -50,6 +52,7 @@ public class EmployeeMenu {
 
             case 3:
                 // method to delete an employee
+                removeEmployee();
 
                 break;
             case 4:
@@ -87,10 +90,18 @@ public class EmployeeMenu {
 
         Employee employee = new Employee(id, gender, name, startDate, salary);
         Employee.employeeList.add(employee);
+        System.out.println(employee);
 
+        //String allEmployees = employee.retrieveStaffDetails();
+        //System.out.println(allEmployees);
 
-        String allEmployees = employee.retrieveStaffDetails();
-        System.out.println(allEmployees);
+    }
+
+    public static void removeEmployee() {
+        //System.out.println(allEmployees);
+        System.out.println("Please enter the id of the employee you would like to delete.");
+        int id = scanner.nextInt();
+
 
     }
 
