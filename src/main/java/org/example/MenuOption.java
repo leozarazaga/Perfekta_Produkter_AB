@@ -20,7 +20,7 @@ public class MenuOption {
                 EmployeeMenu.employeeMenu();
                 break;
             case 3:
-                InternMenu.InternMenu();
+                InternMenu.internMenu();
                 break;
             case 4:
                 System.exit(0);

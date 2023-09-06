@@ -124,7 +124,14 @@ public class EmployeeMenu {
 
                 return;
             }
+
+          System.out.println("Employee with ID " + id + " not found.");
+          System.out.println(" \nPress Enter to return to the main menu...");
+          scanner.nextLine();
+          scanner.nextLine();
+          MenuChoice.mainMenu();
         }
+
     }
 
 
@@ -134,11 +141,7 @@ public class EmployeeMenu {
                 stream().filter(employee->"male".
                         equals(employee.getGender())).collect(Collectors.toList());
 
-        System.out.println("Employee with ID " + id + " not found.");
-        System.out.println(" \nPress Enter to return to the main menu...");
-        scanner.nextLine();
-        scanner.nextLine();
-        MenuChoice.mainMenu();
+
         double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / maleEmployees.size();
         System.out.println("Average salary for males: " + averageSalary);
