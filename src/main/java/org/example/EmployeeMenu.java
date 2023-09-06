@@ -2,7 +2,13 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
+import static org.example.Employee.employeeList;
+
+import static org.example.Employee.employeeList;
 
 public class EmployeeMenu {
 
@@ -43,7 +49,6 @@ public class EmployeeMenu {
         switch (choice) {
             case 1:
                 // method that prints out all employees
-
                break;
             case 2:
                 // call method that adds an employee
@@ -62,8 +67,9 @@ public class EmployeeMenu {
                 modifyEmployee();
                 break;
             case 5:
-                //calculateAverageWage();
-                //method to retrieve average wage (all/men/women)
+                calculateAverageWage();
+                calculateAverageWageForWomen();
+                calculateAverageWageForMen();
                 break;
             case 6:
                 MenuChoice.mainMenu();
@@ -93,23 +99,57 @@ public class EmployeeMenu {
         int salary = scanner.nextInt();
 
         Employee employee = new Employee(id, gender, name, startDate, salary);
-        Employee.employeeList.add(employee);
+        employeeList.add(employee);
         System.out.println(employee);
 
-        //String allEmployees = employee.retrieveStaffDetails();
-        //System.out.println(allEmployees);
+
 
     }
 
     public static void removeEmployee() {
-        //System.out.println(allEmployees);
-        System.out.println("Please enter the id of the employee you would like to delete.");
+
+
+        System.out.println(employeeList);
+        System.out.println("\n Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
+
+  
+ 
+      
+      for (Employee employee : employeeList) {
+            if (employee.getId() == id) {
+                employeeList.remove(employee);
+                System.out.println("Employee: " + employee.getName() + " has been removed.");
+
+                System.out.println(" \nPress Enter to return to the main menu...");
+                scanner.nextLine();
+                scanner.nextLine();
+                MenuChoice.mainMenu();
+
+                return;
+            }
+
+          System.out.println("Employee with ID " + id + " not found.");
+          System.out.println(" \nPress Enter to return to the main menu...");
+          scanner.nextLine();
+          scanner.nextLine();
+          MenuChoice.mainMenu();
+        }
+
     }
+ }
+
+    public static void calculateAverageWageForMen() {
+        List<Employee> maleEmployees =
+                employeeList.
+                stream().filter(employee->"male".
+                        equals(employee.getGender())).collect(Collectors.toList());
+
 
     public static void modifyEmployee(){
         System.out.print("Employee ID: ");
         int modifyEmployeeID = scanner.nextInt();
+
 
         for(Employee employee : Employee.employeeList){
             if(employee.getId() == modifyEmployeeID){
@@ -133,6 +173,28 @@ public class EmployeeMenu {
                 int newPayCheck = scanner.nextInt();
                 employee.setPaycheck(newPayCheck);
 
+        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / maleEmployees.size();
+        System.out.println("Average salary for males: " + averageSalary);
+    }
+
+
+    public static void calculateAverageWageForWomen() {
+        List<Employee> femaleEmployees =
+                employeeList.
+                        stream().filter(employee->"female".
+                                equals(employee.getGender())).collect(Collectors.toList());
+
+        double totalSalary = femaleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / femaleEmployees.size();
+        System.out.println("Average salary for females: " + averageSalary);
+    }
+
+    public static void calculateAverageWage() {
+        double totalSalary = employeeList.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / employeeList.size();
+        System.out.println("Average salary for all employees are: " + averageSalary);
+    }
 
                 System.out.println("Updated employee: " + employee);
                 return;
