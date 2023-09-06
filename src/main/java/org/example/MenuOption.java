@@ -17,42 +17,14 @@ public class MenuOption {
 
                 break;
             case 2:
-                System.out.println();
-
-                // call a method that shows employee menu options
                 EmployeeMenu.employeeMenu();
-
                 break;
-
             case 3:
-                // call a method that shows intern menu options
-                InternMenu.internMenu();
+                InternMenu.InternMenu();
                 break;
             case 4:
-                // method that exits the program
+                System.exit(0);
                 break;
         }
-
-
     }
-
-
-/*
-        if( choice == 1 ) {
-
-            System.out.println("Here's the information about all staff");
-        }
-        else if ( choice == 2 ) {
-            System.out.println("Here's info about all employees");
-        }
-        else if (choice == 3) {
-            System.out.println("Here's info about all the interns");
-        }
-        else System.out.println("Choose a valid option");
-    }
-
- */
-
-
-
 }
