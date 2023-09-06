@@ -25,7 +25,7 @@ public class InternMenu {
             removeIntern();
             break;
         case 4:
-            //modifyIntern();
+            modifyIntern();
             break;
         case 5:
             MenuChoice.mainMenu();
@@ -33,6 +33,37 @@ public class InternMenu {
     }
 
     }
+
+
+    public static void modifyIntern(){
+        System.out.print("Employee ID: ");
+        int modifyInternID = scanner.nextInt();
+
+        for(Intern intern : internList){
+            if(intern.getId() == modifyInternID){
+
+                System.out.println("Modifying: " + intern);
+
+                System.out.print("Enter a gender (male/female): ");
+                String newGender = scanner.next();
+                intern.setGender(newGender);
+
+                System.out.print("Enter a new name: ");
+                String newName = scanner.next();
+                intern.setName(newName);
+
+                System.out.print("Enter a new end date (yyyy-mm-dd): ");
+                String endDateInput = scanner.next();
+                LocalDate endDate =  LocalDate.parse(endDateInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                intern.setEndDate(endDate);
+
+                System.out.print("Enter a new message: ");
+                scanner.nextLine();
+                String quitMessage = scanner.nextLine();
+                intern.setQuitMessage(quitMessage);
+
+
+                System.out.println("Updated intern: " + intern);
 
     public static void addIntern() {
         System.out.println("Please enter ID of the new intern:");
@@ -74,9 +105,16 @@ public class InternMenu {
                 scanner.nextLine();
                 MenuChoice.mainMenu();
 
+
                 return;
             }
         }
+
+
+        System.out.println("Intern with ID " + modifyInternID + " not found.");
+
+    }
+}
 
 
         System.out.println("Intern with ID " + id + " not found.");
@@ -88,4 +126,5 @@ public class InternMenu {
 
     }
     }
+
 
