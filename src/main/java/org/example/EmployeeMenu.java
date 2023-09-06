@@ -108,13 +108,38 @@ public class EmployeeMenu {
     }
 
     public static void modifyEmployee(){
-        System.out.println("Employee ID: ");
+        System.out.print("Employee ID: ");
         int modifyEmployeeID = scanner.nextInt();
-        Employee.employeeList.contains(modifyEmployeeID);
 
-        System.out.println(modifyEmployeeID);
-        System.out.println("Hello");
+        for(Employee employee : Employee.employeeList){
+            if(employee.getId() == modifyEmployeeID){
 
+                System.out.println("Modifying: " + employee);
+
+                System.out.print("Enter a gender (male/female): ");
+                String newGender = scanner.next();
+                employee.setGender(newGender);
+
+                System.out.print("Enter a new name: ");
+                String newName = scanner.next();
+                employee.setName(newName);
+
+                System.out.print("Enter a new Start date: (yyyy-mm-dd): ");
+                String startDateInput = scanner.next();
+                LocalDate employeeStartDate =  LocalDate.parse(startDateInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                employee.setStartDate(employeeStartDate);
+
+                System.out.print("Enter new paycheck: ");
+                int newPayCheck = scanner.nextInt();
+                employee.setPaycheck(newPayCheck);
+
+
+                System.out.println("Updated employee: " + employee);
+                return;
+            }
+        }
+
+        System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
 
     }
 
