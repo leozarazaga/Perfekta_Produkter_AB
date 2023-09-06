@@ -12,6 +12,7 @@ public class MenuOption {
                 System.out.println("List of all staffmembers: ");
                 System.out.println(employeeList);
                 System.out.println(internList);
+                System.out.println("Perfekta Produkter AB currently has " + (employeeList.size()+internList.size()) + " staff members.");
                 // printa ut antal staff
 
                 break;
@@ -25,7 +26,7 @@ public class MenuOption {
 
             case 3:
                 // call a method that shows intern menu options
-                InternMenu.InternMenu();
+                InternMenu.internMenu();
                 break;
             case 4:
                 // method that exits the program

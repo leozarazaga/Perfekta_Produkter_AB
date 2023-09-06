@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import static org.example.Employee.employeeList;
+
 public class EmployeeMenu {
 
     static Scanner scanner = new Scanner(System.in);
@@ -95,15 +97,40 @@ public class EmployeeMenu {
         Employee.employeeList.add(employee);
         System.out.println(employee);
 
-        //String allEmployees = employee.retrieveStaffDetails();
-        //System.out.println(allEmployees);
+
 
     }
 
     public static void removeEmployee() {
-        //System.out.println(allEmployees);
-        System.out.println("Please enter the id of the employee you would like to delete.");
+
+
+        System.out.println(employeeList);
+        System.out.println("\n Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
+
+        for (Employee employee : employeeList) {
+            if (employee.getId() == id) {
+                employeeList.remove(employee);
+                System.out.println("Employee: " + employee.getName() + " has been removed.");
+
+                System.out.println(" \nPress Enter to return to the main menu...");
+                scanner.nextLine();
+                scanner.nextLine();
+                MenuChoice.mainMenu();
+
+                return;
+            }
+        }
+
+
+        System.out.println("Employee with ID " + id + " not found.");
+        System.out.println(" \nPress Enter to return to the main menu...");
+        scanner.nextLine();
+        scanner.nextLine();
+        MenuChoice.mainMenu();
+
+
+
 
 
     }
