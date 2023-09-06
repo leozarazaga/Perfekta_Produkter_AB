@@ -48,6 +48,20 @@ public class EmployeeMenu {
 
                 break;
 
+            case 3:
+                // method to delete an employee
+
+                break;
+            case 4:
+                //method to modify an employee
+                break;
+            case 5:
+                //method to retrieve average wage (all/men/women)
+                break;
+            case 6:
+                MenuChoice.mainMenu();
+                break;
+
         }
 
 
