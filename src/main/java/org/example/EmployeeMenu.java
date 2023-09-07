@@ -108,7 +108,6 @@ public class EmployeeMenu {
     }
 
     public static void removeEmployee() {
-
         System.out.println(employeeList);
         System.out.println("\n Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
