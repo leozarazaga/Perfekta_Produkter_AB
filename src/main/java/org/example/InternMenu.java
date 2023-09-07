@@ -96,6 +96,7 @@ public class InternMenu {
         Intern.internList.add(intern);
         System.out.println();
         System.out.println("You have successfully added : " + intern);
+        returnToMainMenu();
 
     }
 
