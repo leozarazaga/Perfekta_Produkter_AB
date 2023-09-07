@@ -69,7 +69,6 @@ public class InternMenu {
 
                 System.out.println("Updated intern: " + intern);
                 returnToMainMenu();
-                //return;
             }
         }
         System.out.println("Intern with ID " + modifyInternID + " not found.");
@@ -97,7 +96,6 @@ public class InternMenu {
         System.out.println();
         System.out.println("You have successfully added : " + intern);
         returnToMainMenu();
-
     }
 
 
@@ -120,7 +118,6 @@ public class InternMenu {
 
     public static void returnToMainMenu() {
         System.out.println(" \nPress Enter to return to the main menu...");
-        scanner.nextLine();
         scanner.nextLine();
         MenuChoice.mainMenu();
     }

@@ -53,16 +53,12 @@ public class EmployeeMenu {
                 break;
             case 2:
                 addEmployee();
-                returnToMainMenu();
                 break;
-
             case 3:
                 removeEmployee();
-                returnToMainMenu();
                 break;
             case 4:
                 modifyEmployee();
-                returnToMainMenu();
                 break;
             case 5:
                 calculateAverageWage();
@@ -98,8 +94,7 @@ public class EmployeeMenu {
         Employee employee = new Employee(id, gender, name, startDate, salary);
         employeeList.add(employee);
         System.out.println(employee);
-
-
+        returnToMainMenu();
     }
 
     public static void removeEmployee() {
@@ -112,22 +107,19 @@ public class EmployeeMenu {
             if (employee.getId() == id) {
                 employeeList.remove(employee);
                 System.out.println("Employee: " + employee.getName() + " has been removed.");
+                returnToMainMenu();
                 return;
             }
-
             System.out.println("Employee with ID " + id + " not found.");
             employeeMenu();
         }
-
-
     }
 
 
     public static void modifyEmployee() {
-        System.out.println("Hello World  testing-git");
-        System.out.print("Employee ID: ");
+        System.out.println(employeeList);
+        System.out.print("Enter Employee ID that you would like to modify: ");
         int modifyEmployeeID = scanner.nextInt();
-
 
         for (Employee employee : Employee.employeeList) {
             if (employee.getId() == modifyEmployeeID) {
@@ -159,8 +151,7 @@ public class EmployeeMenu {
             }
         }
             System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
-            returnToMainMenu();
-
+            employeeMenu();
     }
 
     public static void calculateAverageWageForMen() {
@@ -172,7 +163,6 @@ public class EmployeeMenu {
         double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / maleEmployees.size();
         System.out.println("Average salary for males: " + averageSalary);
-
     }
 
 
