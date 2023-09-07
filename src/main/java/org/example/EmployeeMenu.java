@@ -48,34 +48,31 @@ public class EmployeeMenu {
 
         switch (choice) {
             case 1:
-                // method that prints out all employees
                 System.out.println(employeeList);
+                returnToMainMenu();
                 break;
             case 2:
-                // call method that adds an employee
                 addEmployee();
-                System.out.println("Press to go back ↵");
-
+                returnToMainMenu();
                 break;
 
             case 3:
-                // method to delete an employee
                 removeEmployee();
-
+                returnToMainMenu();
                 break;
             case 4:
-                //method to modify an employee
                 modifyEmployee();
+                returnToMainMenu();
                 break;
             case 5:
                 calculateAverageWage();
                 calculateAverageWageForWomen();
                 calculateAverageWageForMen();
+                returnToMainMenu();
                 break;
             case 6:
                 MenuChoice.mainMenu();
                 break;
-
         }
 
 
@@ -107,30 +104,18 @@ public class EmployeeMenu {
 
     public static void removeEmployee() {
 
-
         System.out.println(employeeList);
         System.out.println("\n Please enter the id of the employee you would like to delete.");
         int id = scanner.nextInt();
-
 
         for (Employee employee : employeeList) {
             if (employee.getId() == id) {
                 employeeList.remove(employee);
                 System.out.println("Employee: " + employee.getName() + " has been removed.");
-
-                System.out.println(" \nPress Enter to return to the main menu...");
-                scanner.nextLine();
-                scanner.nextLine();
-                MenuChoice.mainMenu();
-
                 return;
             }
 
             System.out.println("Employee with ID " + id + " not found.");
-            System.out.println(" \nPress Enter to return to the main menu...");
-            scanner.nextLine();
-            scanner.nextLine();
-            MenuChoice.mainMenu();
         }
 
 
@@ -178,10 +163,18 @@ public class EmployeeMenu {
                 employee.setPaycheck(newPayCheck);
 
                 System.out.println("Updated employee: " + employee);
+                System.out.println(" \nPress Enter to return to the main menu...");
+                scanner.nextLine();
+                scanner.nextLine();
+                MenuChoice.mainMenu();
                 return;
             }
         }
             System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
+            System.out.println(" \nPress Enter to return to the main menu...");
+            scanner.nextLine();
+            scanner.nextLine();
+            MenuChoice.mainMenu();
     }
 
     public static void calculateAverageWageForWomen() {
@@ -201,4 +194,10 @@ public class EmployeeMenu {
         System.out.println("Average salary for all employees are: " + averageSalary);
     }
 
+    public static void returnToMainMenu() {
+        System.out.println(" \nPress Enter to return to the main menu...");
+        scanner.nextLine();
+        scanner.nextLine();
+        MenuChoice.mainMenu();
+    }
 }

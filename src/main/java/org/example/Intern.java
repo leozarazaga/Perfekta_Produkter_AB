@@ -50,15 +50,5 @@ public class Intern extends Staff {
                 ", endDate: " + endDate +
                 ", quitMessage: " + quitMessage + "\n";
     }
-/*
-    @Override
-    public String retrieveStaffDetails() {
-        StringBuilder sb = new StringBuilder();
-        for (Intern intern : internList) {
-            sb.append(intern.toString()).append("\n");
-        }
-        return sb.toString();
-    }
 
- */
 }
