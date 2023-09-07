@@ -116,22 +116,12 @@ public class EmployeeMenu {
             }
 
             System.out.println("Employee with ID " + id + " not found.");
+            employeeMenu();
         }
 
 
     }
 
-    public static void calculateAverageWageForMen() {
-        List<Employee> maleEmployees =
-                employeeList.
-                        stream().filter(employee -> "male".
-                                equals(employee.getGender())).collect(Collectors.toList());
-
-        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
-        double averageSalary = totalSalary / maleEmployees.size();
-        System.out.println("Average salary for males: " + averageSalary);
-
-    }
 
     public static void modifyEmployee() {
         System.out.println("Hello World  testing-git");
@@ -163,19 +153,28 @@ public class EmployeeMenu {
                 employee.setPaycheck(newPayCheck);
 
                 System.out.println("Updated employee: " + employee);
-                System.out.println(" \nPress Enter to return to the main menu...");
-                scanner.nextLine();
-                scanner.nextLine();
-                MenuChoice.mainMenu();
+                returnToMainMenu();
+
                 return;
             }
         }
             System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
-            System.out.println(" \nPress Enter to return to the main menu...");
-            scanner.nextLine();
-            scanner.nextLine();
-            MenuChoice.mainMenu();
+            returnToMainMenu();
+
     }
+
+    public static void calculateAverageWageForMen() {
+        List<Employee> maleEmployees =
+                employeeList.
+                        stream().filter(employee -> "male".
+                                equals(employee.getGender())).collect(Collectors.toList());
+
+        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / maleEmployees.size();
+        System.out.println("Average salary for males: " + averageSalary);
+
+    }
+
 
     public static void calculateAverageWageForWomen() {
         List<Employee> femaleEmployees =
