@@ -7,7 +7,8 @@ public class MenuChoice {
 
     public static void mainMenu() {
 
-        System.out.println("Welcome!  \n Do you want to handle information about: \n " +
+        System.out.println("------------------------------------------------------- \n" +
+                "Welcome!  \n Do you want to handle information about: \n " +
                 "1. Amount of staff in the system | " +
 
                 "2. Employees | " +
