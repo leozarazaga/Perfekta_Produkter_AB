@@ -49,6 +49,7 @@ public class EmployeeMenu {
         switch (choice) {
             case 1:
                 // method that prints out all employees
+                System.out.println(employeeList);
                 break;
             case 2:
                 // call method that adds an employee
@@ -199,4 +200,5 @@ public class EmployeeMenu {
         double averageSalary = totalSalary / employeeList.size();
         System.out.println("Average salary for all employees are: " + averageSalary);
     }
+
 }
