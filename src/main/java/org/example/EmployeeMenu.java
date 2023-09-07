@@ -141,7 +141,6 @@ public class EmployeeMenu {
                 stream().filter(employee->"male".
                         equals(employee.getGender())).collect(Collectors.toList());
 
-
         double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / maleEmployees.size();
         System.out.println("Average salary for males: " + averageSalary);
