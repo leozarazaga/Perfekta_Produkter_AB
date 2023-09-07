@@ -2,6 +2,8 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -42,7 +44,7 @@ public class EmployeeMenu {
 
 
         System.out.println("1. View all employees | " + " 2. Add new employee | " + "3. Delete employee | " +
-                "4. Modify employee | " + "5. Average wage (men/women) | " + "6. Back to main menu ");
+                "4. Modify employee | " + "5. Average wage (men/women) | " + "6. List of all employees ordered by latest hired | " + "7. Back to main menu ");
 
         int choice = scanner.nextInt();
 
@@ -55,7 +57,6 @@ public class EmployeeMenu {
                 addEmployee();
                 returnToMainMenu();
                 break;
-
             case 3:
                 removeEmployee();
                 returnToMainMenu();
@@ -71,6 +72,10 @@ public class EmployeeMenu {
                 returnToMainMenu();
                 break;
             case 6:
+                orderEmployeesByHireDate();
+                returnToMainMenu();
+                break;
+            case 7:
                 MenuChoice.mainMenu();
                 break;
         }
@@ -114,30 +119,13 @@ public class EmployeeMenu {
                 System.out.println("Employee: " + employee.getName() + " has been removed.");
                 return;
             }
-
             System.out.println("Employee with ID " + id + " not found.");
         }
-
-
     }
-
-    public static void calculateAverageWageForMen() {
-        List<Employee> maleEmployees =
-                employeeList.
-                        stream().filter(employee -> "male".
-                                equals(employee.getGender())).collect(Collectors.toList());
-
-        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
-        double averageSalary = totalSalary / maleEmployees.size();
-        System.out.println("Average salary for males: " + averageSalary);
-
-    }
-
     public static void modifyEmployee() {
         System.out.println("Hello World  testing-git");
         System.out.print("Employee ID: ");
         int modifyEmployeeID = scanner.nextInt();
-
 
         for (Employee employee : Employee.employeeList) {
             if (employee.getId() == modifyEmployeeID) {
@@ -170,11 +158,23 @@ public class EmployeeMenu {
                 return;
             }
         }
-            System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
-            System.out.println(" \nPress Enter to return to the main menu...");
-            scanner.nextLine();
-            scanner.nextLine();
-            MenuChoice.mainMenu();
+        System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
+        System.out.println(" \nPress Enter to return to the main menu...");
+        scanner.nextLine();
+        scanner.nextLine();
+        MenuChoice.mainMenu();
+    }
+
+    public static void calculateAverageWageForMen() {
+        List<Employee> maleEmployees =
+                employeeList.
+                        stream().filter(employee -> "male".
+                                equals(employee.getGender())).collect(Collectors.toList());
+
+        double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
+        double averageSalary = totalSalary / maleEmployees.size();
+        System.out.println("Average salary for males: " + averageSalary);
+
     }
 
     public static void calculateAverageWageForWomen() {
@@ -199,5 +199,18 @@ public class EmployeeMenu {
         scanner.nextLine();
         scanner.nextLine();
         MenuChoice.mainMenu();
+    }
+
+    public static void orderEmployeesByHireDate() {
+    Collections.sort(employeeList, new Comparator<Employee>() {
+        @Override
+        public int compare(Employee emp1, Employee emp2) {
+            return emp2.getStartDate().compareTo(emp1.getStartDate());
+        }
+    });
+
+    for(Employee employee : employeeList) {
+        System.out.println("Name: " + employee.getName() + ", Start date: " + employee.getStartDate());
+    }
     }
 }
