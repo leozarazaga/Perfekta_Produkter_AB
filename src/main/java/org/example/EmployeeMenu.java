@@ -2,6 +2,8 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -16,33 +18,9 @@ public class EmployeeMenu {
 
     public static void employeeMenu() {
 
-/*
-        Employee employee1 = new Employee(1, "female", "Carola", LocalDate.of(2023, 9, 1), 30);
-        Employee employee2 = new Employee(2, "female", "Lina", LocalDate.of(2023, 11, 2), 40);
-        Employee employee3 = new Employee(3, "male", "Leo", LocalDate.of(2022, 10, 15), 20);
-        Intern intern1 = new Intern(4, "female", "Felicia", LocalDate.of(2024, 1, 1), "Hejdå");
-        Intern intern2 = new Intern(5, "female", "Fanny", LocalDate.of(2024, 1, 1), "Hejdå");
-        Intern.internList.add(intern1);
-        Intern.internList.add(intern2);
-        Employee.employeeList.add(employee1);
-        Employee.employeeList.add(employee2);
-        Employee.employeeList.add(employee3);
-        String interns = intern1.retrieveStaffDetails();
-        Employee.employeeList.remove(employee1);
-        String allEmployees = employee1.retrieveStaffDetails();
-        //System.out.println("Employees: \n" + Employee.getStaffList());
-        //System.out.println(employee1.staffList());
-        //System.out.println(employee2.retrieveStaffDetails());
-        System.out.println(employee1);
-        System.out.println(allEmployees);
-        System.out.println(interns);
-        System.out.println(allEmployees + interns);
-
- */
-
 
         System.out.println("1. View all employees | " + " 2. Add new employee | " + "3. Delete employee | " +
-                "4. Modify employee | " + "5. Average wage (men/women) | " + "6. Back to main menu ");
+                "4. Modify employee | " + "5. Average wage (men/women) | " + "6. List of all employees ordered by latest hired | " + "7. Back to main menu");
 
         int choice = scanner.nextInt();
 
@@ -67,8 +45,13 @@ public class EmployeeMenu {
                 returnToMainMenu();
                 break;
             case 6:
+                orderEmployeesByHireDate();
+                returnToMainMenu();
+                break;
+            case 7:
                 MenuChoice.mainMenu();
                 break;
+
         }
 
 
@@ -182,6 +165,21 @@ public class EmployeeMenu {
         double averageSalary = totalSalary / employeeList.size();
         System.out.println("Average salary for all employees are: " + averageSalary);
     }
+
+
+    public static void orderEmployeesByHireDate() {
+        Collections.sort(employeeList, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee emp1, Employee emp2) {
+                return emp2.getStartDate().compareTo(emp1.getStartDate());
+            }
+        });
+
+        for(Employee employee : employeeList) {
+            System.out.println("Name: " + employee.getName() + ", Start date: " + employee.getStartDate());
+        }
+    }
+
 
     public static void returnToMainMenu() {
         System.out.println(" \nPress Enter to return to the main menu...");
