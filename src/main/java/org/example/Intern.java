@@ -10,7 +10,7 @@ public class Intern extends Staff {
 
     public static List<Intern> internList = new ArrayList<>();
 
-    public Intern(int id, String gender, String name, LocalDate endDate, String quitMessage) {
+    public Intern(String id, String gender, String name, LocalDate endDate, String quitMessage) {
         super(id, gender, name);
 
         this.endDate = endDate;

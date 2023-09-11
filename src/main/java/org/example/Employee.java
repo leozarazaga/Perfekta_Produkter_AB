@@ -9,7 +9,7 @@ public class Employee extends Staff {
     private LocalDate startDate;
     private int paycheck;
     public static List<Employee> employeeList = new ArrayList<>();
-    public Employee(int id, String gender, String name, LocalDate startDate, int paycheck) {
+    public Employee(String id, String gender, String name, LocalDate startDate, int paycheck) {
         super(id, gender, name);
         this.startDate = startDate;
         this.paycheck = paycheck;
@@ -45,31 +45,12 @@ public class Employee extends Staff {
         return employeeList;
     }
 
+    /*
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
 
-    /*
-    @Override
-    public String retrieveStaffDetails() {
-        StringBuilder sb = new StringBuilder();
-        for (Employee employee : employeeList) {
-            sb.append(employee.toString()).append("\n");
-        }
-        return sb.toString();
-    }
-
      */
 
-   /* @Override
-    public String staffList() {
-        StringBuilder sb = new StringBuilder();
-        employeeList.forEach(person -> {
-            sb.append(person.toString()); // Assuming each person has a meaningful toString() method
-            sb.append("\n");
-        });
-
-        return sb.toString();
-    }*/
 
 }

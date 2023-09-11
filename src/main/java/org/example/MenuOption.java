@@ -10,11 +10,8 @@ public class MenuOption {
 
         switch (choice) {
             case 1:
-                System.out.println("List of all staffmembers: ");
-                System.out.println(employeeList);
-                System.out.println(internList);
-                System.out.println("Perfekta Produkter AB currently has " + (employeeList.size()+internList.size()) + " staff members.");
-                returnToMainMenu();
+            amountOfStaffInTheSystem();
+            returnToMainMenu();
                 break;
             case 2:
                 EmployeeMenu.employeeMenu();
@@ -27,9 +24,23 @@ public class MenuOption {
                 break;
         }
     }
+    public static void amountOfStaffInTheSystem() {
+        System.out.println("\nList of all staffmembers: " + (employeeList.size() + internList.size()) + "\n");
+        System.out.println("-Total employees: " + employeeList.size());
+
+        for (Employee employee : employeeList) {
+            System.out.print(employee);
+        }
+
+        System.out.println("\n-Total interns: " + internList.size());
+
+        for (Intern intern : internList) {
+            System.out.print(intern);
+        }
+    }
 
     public static void returnToMainMenu() {
-        System.out.println(" \nPress Enter to return to the main menu...");
+        System.out.print(" \n↩ Press Enter to return to the main menu ");
         scanner.nextLine();
         scanner.nextLine();
         MenuChoice.mainMenu();

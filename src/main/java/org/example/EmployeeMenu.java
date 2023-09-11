@@ -2,14 +2,9 @@ package org.example;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.example.Employee.employeeList;
-
 import static org.example.Employee.employeeList;
 
 public class EmployeeMenu {
@@ -18,7 +13,8 @@ public class EmployeeMenu {
 
     public static void employeeMenu() {
 
-
+        System.out.println("\nEmployees");
+        System.out.println("‾‾‾‾‾‾‾‾‾");
         System.out.println("1. View all employees | " + " 2. Add new employee | " + "3. Delete employee | " +
                 "4. Modify employee | " + "5. Average wage (men/women) | " + "6. List of all employees ordered by latest hired | " + "7. Back to main menu");
 
@@ -26,8 +22,7 @@ public class EmployeeMenu {
 
         switch (choice) {
             case 1:
-                System.out.println(employeeList);
-                returnToMainMenu();
+                viewAllEmployees();
                 break;
             case 2:
                 addEmployee();
@@ -42,7 +37,7 @@ public class EmployeeMenu {
                 calculateAverageWage();
                 calculateAverageWageForWomen();
                 calculateAverageWageForMen();
-                returnToMainMenu();
+                returnToEmployeeMenu();
                 break;
             case 6:
                 orderEmployeesByHireDate();
@@ -57,55 +52,79 @@ public class EmployeeMenu {
 
     }
 
-    public static void addEmployee() {
-        System.out.println("Enter id of employee: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Enter gender: (male/female)");
-        String gender = scanner.nextLine();
-        System.out.println("Enter name: (Firstname surname)");
-        String name = scanner.nextLine();
 
-        System.out.println("Enter startdate: (yyyy-mm-dd)");
+    public static void viewAllEmployees() {
+        System.out.println("\nView all employees");
+        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+        for (Employee employee : employeeList) {
+            System.out.print(employee);
+        }
+        returnToEmployeeMenu();
+    }
+
+    public static void addEmployee() {
+        System.out.println("\nAdd a new employee");
+        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+
+
+        String id = GenerateRandomID.generateRandomID();
+        System.out.print("Enter gender: (male/female) ");
+        String gender = scanner.nextLine();
+        scanner.nextLine();
+        System.out.print("Enter name: (Firstname Surname) ");
+        String name = scanner.nextLine();
+        System.out.print("Enter start date: (yyyy-mm-dd) ");
         String date = scanner.nextLine();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate startDate = LocalDate.parse(date, dateFormatter);
-
-        System.out.println("Enter salary: ");
+        System.out.print("Enter salary: ");
         int salary = scanner.nextInt();
+        scanner.nextLine();
 
         Employee employee = new Employee(id, gender, name, startDate, salary);
         employeeList.add(employee);
-        System.out.println(employee);
-        returnToMainMenu();
+        System.out.println("\n You successfully added the following employee to our system: ");
+        System.out.print(employee);
+        returnToEmployeeMenu();
     }
 
     public static void removeEmployee() {
-
-        System.out.println(employeeList);
-        System.out.println("\n Please enter the id of the employee you would like to delete.");
-        int id = scanner.nextInt();
+        System.out.println("\nDelete employee");
+        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+        System.out.println("Employees in the system");
+        //Kanske implementera en sort metod där id och namnet syns bara?
 
         for (Employee employee : employeeList) {
-            if (employee.getId() == id) {
+            System.out.print(employee);
+        }
+        System.out.print("\nPlease enter the ID of the employee you would like to delete: ");
+        String id = scanner.nextLine();
+
+        for (Employee employee : employeeList) {
+            if (Objects.equals(employee.getId(), id)) {
                 employeeList.remove(employee);
                 System.out.println("Employee: " + employee.getName() + " has been removed.");
-                returnToMainMenu();
+                returnToEmployeeMenu();
                 return;
             }
-            System.out.println("Employee with ID " + id + " not found.");
-            employeeMenu();
         }
+        System.out.println("Employee with ID " + id + " not found. Try again.");
+        removeEmployee();
     }
 
 
     public static void modifyEmployee() {
-        System.out.println(employeeList);
+        for (Employee employee : employeeList) {
+            System.out.print(employee);
+
+        }
+        scanner.nextLine();
         System.out.print("Enter Employee ID that you would like to modify: ");
-        int modifyEmployeeID = scanner.nextInt();
+        String modifyEmployeeID = scanner.nextLine();
+
 
         for (Employee employee : Employee.employeeList) {
-            if (employee.getId() == modifyEmployeeID) {
+            if (Objects.equals(employee.getId(), modifyEmployeeID)) {
 
                 System.out.println("Modifying: " + employee);
 
@@ -125,17 +144,19 @@ public class EmployeeMenu {
 
                 System.out.print("Enter new paycheck: ");
                 int newPayCheck = scanner.nextInt();
+                scanner.nextLine();
                 employee.setPaycheck(newPayCheck);
 
                 System.out.println("Updated employee: " + employee);
-                returnToMainMenu();
+                returnToEmployeeMenu();
 
                 return;
             }
         }
-            System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
-            employeeMenu();
+        System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
+        employeeMenu();
     }
+
 
     public static void calculateAverageWageForMen() {
         List<Employee> maleEmployees =
@@ -186,5 +207,11 @@ public class EmployeeMenu {
         scanner.nextLine();
         scanner.nextLine();
         MenuChoice.mainMenu();
+    }
+
+    public static void returnToEmployeeMenu() {
+        System.out.print("\n↩ Press Enter to go back ");
+        scanner.nextLine();
+        employeeMenu();
     }
 }
