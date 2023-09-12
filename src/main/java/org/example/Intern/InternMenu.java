@@ -9,9 +9,9 @@ public class InternMenu {
 
     public static void internMenu() {
 
-        System.out.println("\nInterns");
-        System.out.println("‾‾‾‾‾‾‾");
+        System.out.println("\nInterns\n‾‾‾‾‾‾‾");
         System.out.println("1. View all interns | 2. Add intern | 3. Remove intern | 4. Modify intern | 5. Back to main menu");
+        System.out.print("Choose an option: ");
         int choice = scanner.nextInt();
 
         switch (choice) {

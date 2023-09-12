@@ -10,11 +10,10 @@ public class EmployeeMenu {
 
     public static void employeeMenu() {
 
-        System.out.println("\nEmployees");
-        System.out.println("‾‾‾‾‾‾‾‾‾");
+        System.out.println("\nEmployees\n‾‾‾‾‾‾‾‾‾");
         System.out.println("1. View all employees | " + " 2. Add new employee | " + "3. Delete employee | " +
                 "4. Modify employee | " + "5. Average wage (men/women) | " + "6. List of all employees ordered by latest hired | " + "7. Back to main menu");
-
+        System.out.print("Choose an option: ");
         int choice = scanner.nextInt();
 
         switch (choice) {

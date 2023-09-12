@@ -14,7 +14,8 @@ import static org.example.Intern.Intern.internList;
 public class InternMethods {
     static Scanner scanner = new Scanner(System.in);
     public static void viewAllInterns() {
-        System.out.println("\nAll interns in the system: " + internList.size());
+        System.out.println("\nView all inters\n̅  ̅  ̅  ̅  ̅  ̅  ̅  ̅ ");
+        System.out.println("All interns in the system: " + internList.size()+ "\n");
         for (Intern intern : internList) {
             System.out.print(intern);
         }
@@ -119,14 +120,12 @@ public class InternMethods {
 
 
     public static void removeIntern() {
+        System.out.println("\nRemove intern\n‾ ‾ ‾ ‾ ‾ ‾ ‾");
 
-        scanner.nextLine();
-        System.out.println("\nRemove intern");
-        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾");
         for (Intern intern : internList) {
             System.out.print(intern);
         }
-        System.out.println("\nPlease enter the ID of the intern you would like to delete:");
+        System.out.print("\nCopy and paste the ID you would like to delete: ");
         String id = scanner.nextLine();
 
 

@@ -36,7 +36,6 @@ public class EmployeeMethods {
         String id = GenerateRandomID.generateRandomID();
         System.out.print("Enter gender: (male/female) ");
         String gender = scanner.nextLine();
-        scanner.nextLine();
         System.out.print("Enter name: (Firstname Surname) ");
         String name = scanner.nextLine();
         System.out.print("Enter start date: (yyyy-mm-dd) ");
@@ -49,7 +48,7 @@ public class EmployeeMethods {
 
         Employee employee = new Employee(id, gender, name, startDate, salary);
         employeeList.add(employee);
-        System.out.println("\n You successfully added the following employee to our system: ");
+        System.out.println("\nYou successfully added the following employee to our system: ");
         System.out.print(employee);
         returnToEmployeeMenu();
     }
@@ -63,7 +62,7 @@ public class EmployeeMethods {
         for (Employee employee : employeeList) {
             System.out.print(employee);
         }
-        System.out.print("\nPlease enter the ID of the employee you would like to delete: ");
+        System.out.print("\nCopy and paste the ID you would like to delete: ");
         String id = scanner.nextLine();
 
         for (Employee employee : employeeList) {
@@ -78,16 +77,15 @@ public class EmployeeMethods {
         removeEmployee();
     }
 
-
     public static void modifyEmployee() {
+        System.out.println("\nModify employee\n̅  ̅  ̅  ̅  ̅  ̅  ̅  ̅  ");
+
         for (Employee employee : employeeList) {
             System.out.print(employee);
-
         }
-        scanner.nextLine();
-        System.out.print("Enter Employee ID that you would like to modify: ");
-        String modifyEmployeeID = scanner.nextLine();
 
+        System.out.print("\nCopy and paste the ID you would like to modify: ");
+        String modifyEmployeeID = scanner.nextLine();
 
         for (Employee employee : Employee.employeeList) {
             if (Objects.equals(employee.getId(), modifyEmployeeID)) {
@@ -96,15 +94,15 @@ public class EmployeeMethods {
 
                 System.out.print("Enter a gender (male/female): ");
                 String newGender = scanner.next();
+                scanner.nextLine();
                 employee.setGender(newGender);
 
                 System.out.print("Enter a new name: ");
-                scanner.nextLine();
                 String newName = scanner.nextLine();
                 employee.setName(newName);
 
                 System.out.print("Enter a new Start date: (yyyy-mm-dd): ");
-                String startDateInput = scanner.next();
+                String startDateInput = scanner.nextLine();
                 LocalDate employeeStartDate = LocalDate.parse(startDateInput, DateTimeFormatter.ISO_LOCAL_DATE);
                 employee.setStartDate(employeeStartDate);
 
@@ -113,16 +111,14 @@ public class EmployeeMethods {
                 scanner.nextLine();
                 employee.setPaycheck(newPayCheck);
 
-                System.out.println("Updated employee: " + employee);
+                System.out.println("\nUpdated employee: " + employee);
                 returnToEmployeeMenu();
-
                 return;
             }
         }
-        System.out.println("Employee with ID " + modifyEmployeeID + " not found.");
-        employeeMenu();
+        System.out.println("\nEmployee with ID " + modifyEmployeeID + " not found. Try again.");
+        modifyEmployee();
     }
-
 
     public static void calculateAverageWageForMen() {
         List<Employee> maleEmployees =
@@ -132,9 +128,8 @@ public class EmployeeMethods {
 
         double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / maleEmployees.size();
-        System.out.println("Average salary for males: " + averageSalary);
+        System.out.println("Average wage for males: " + averageSalary);
     }
-
 
     public static void calculateAverageWageForWomen() {
         List<Employee> femaleEmployees =
@@ -144,15 +139,16 @@ public class EmployeeMethods {
 
         double totalSalary = femaleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / femaleEmployees.size();
-        System.out.println("Average salary for females: " + averageSalary);
+        System.out.println("Average wage for females: " + averageSalary);
     }
 
     public static void calculateAverageWage() {
+        System.out.println("\nAverage wage\n̅  ̅  ̅  ̅  ̅  ̅  ");
+
         double totalSalary = employeeList.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / employeeList.size();
-        System.out.println("Average salary for all employees are: " + averageSalary);
+        System.out.println("Average wage for all employees are: " + averageSalary);
     }
-
 
     public static void orderEmployeesByHireDate() {
         Collections.sort(employeeList, new Comparator<Employee>() {
@@ -166,7 +162,6 @@ public class EmployeeMethods {
             System.out.println("Name: " + employee.getName() + ", Start date: " + employee.getStartDate());
         }
     }
-
 
     public static void returnToMainMenu() {
         System.out.println(" \nPress Enter to return to the main menu...");
