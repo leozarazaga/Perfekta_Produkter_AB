@@ -37,11 +37,14 @@ public class EmployeeMenu {
                 break;
             case 6:
                 EmployeeMethods.orderEmployeesByHireDate();
-                EmployeeMethods.returnToMainMenu();
+                EmployeeMethods.returnToEmployeeMenu();
                 break;
             case 7:
                 MenuChoice.mainMenu();
                 break;
+            default:
+                System.out.println("\nInvalid input, try again.");
+                employeeMenu();
         }
     }
 }

@@ -1,7 +1,5 @@
 package org.example.Intern;
 
-import org.example.Intern.Intern;
-import org.example.Intern.InternMenu;
 import org.example.MenuChoice;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,9 +20,7 @@ public class InternMethods {
         returnToInternMenu();
     }
 
-
     public static void modifyIntern() {
-        scanner.nextLine();
         System.out.println("\nModify intern");
         System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾");
 
@@ -34,7 +30,7 @@ public class InternMethods {
 
         boolean foundIntern = false;
         do {
-            System.out.print("\nEnter the intern ID you would like to modify: ");
+            System.out.print("\nCopy and paste the ID you would like to modify: ");
             String modifyInternID = scanner.nextLine();
 
             for (Intern intern : internList) {
@@ -84,7 +80,7 @@ public class InternMethods {
                     String quitMessage = scanner.nextLine();
                     intern.setQuitMessage(quitMessage);
 
-                    System.out.println("Updated intern: " + intern);
+                    System.out.print("\nUpdated intern: " + intern);
                     returnToInternMenu();
                     break;
                 }
@@ -93,7 +89,6 @@ public class InternMethods {
 
         } while (!foundIntern);
     }
-
 
     public static void addIntern() {
         System.out.println("\nAdd a new intern ");
@@ -114,10 +109,9 @@ public class InternMethods {
 
         Intern intern = new Intern(id, gender, name, endDate, quitMessage);
         Intern.internList.add(intern);
-        System.out.println("\nNew intern added: " + intern);
+        System.out.print("\nNew intern added: " + intern);
         returnToInternMenu();
     }
-
 
     public static void removeIntern() {
         System.out.println("\nRemove intern\n‾ ‾ ‾ ‾ ‾ ‾ ‾");
@@ -142,7 +136,7 @@ public class InternMethods {
     }
 
     public static void returnToMainMenu() {
-        System.out.println(" \nPress Enter to return to the main menu...");
+        System.out.println(" \nPress Enter to return to the main menu ");
         scanner.nextLine();
         MenuChoice.mainMenu();
     }

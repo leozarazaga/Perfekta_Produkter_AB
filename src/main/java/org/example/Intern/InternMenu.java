@@ -31,6 +31,9 @@ public class InternMenu {
                 MenuChoice.mainMenu();
                 InternMethods.returnToMainMenu();
                 break;
+            default:
+                System.out.println("\nInvalid input, try again.");
+                internMenu();
         }
     }
 }

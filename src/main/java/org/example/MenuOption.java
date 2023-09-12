@@ -24,8 +24,11 @@ public class MenuOption {
                 InternMenu.internMenu();
                 break;
             case 4:
+                System.out.println("\nClosing program...\nHave a nice day!");
                 System.exit(0);
                 break;
+            default:
+                System.out.println("Invalid input, try again.");
         }
     }
     public static void amountOfStaffInTheSystem() {
@@ -44,8 +47,8 @@ public class MenuOption {
     }
 
     public static void returnToMainMenu() {
-        scanner.nextLine();
         System.out.print(" \n↩ Press Enter to return to the main menu ");
+        scanner.nextLine();
         scanner.nextLine();
         MenuChoice.mainMenu();
     }

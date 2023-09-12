@@ -18,14 +18,6 @@ public class Employee extends Staff {
     }
 
 
-    @Override
-    public String toString() {
-        return "id: " + getId() +
-                ", gender: '" + getGender() + '\'' +
-                ", name: '" + getName() + '\'' +
-                ", startDate: " + startDate +
-                ", paycheck: " + paycheck + "\n";
-    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -47,12 +39,15 @@ public class Employee extends Staff {
         return employeeList;
     }
 
-    /*
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
+    @Override
+    public String toString() {
+        return "id: " + getId() +
+                ", gender: '" + getGender() + '\'' +
+                ", name: '" + getName() + '\'' +
+                ", startDate: " + startDate +
+                ", paycheck: $" + paycheck + "\n";
     }
 
-     */
 
 
 }

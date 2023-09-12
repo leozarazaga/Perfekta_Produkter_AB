@@ -1,27 +1,22 @@
 package org.example.Employee;
 
 import org.example.utils.GenerateRandomID;
-import org.example.MenuChoice;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.example.Employee.Employee.employeeList;
 import static org.example.Employee.EmployeeMenu.employeeMenu;
-import java.util.Scanner;
-
 
 
 public class EmployeeMethods {
     static Scanner scanner = new Scanner(System.in);
+
     public static void viewAllEmployees() {
-        System.out.println("\nView all employees");
-        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+        System.out.println("\nView all employees\n‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
+        System.out.println("All employees in the system: " + employeeList.size() + "\n");
         for (Employee employee : employeeList) {
             System.out.print(employee);
         }
@@ -78,46 +73,86 @@ public class EmployeeMethods {
     }
 
     public static void modifyEmployee() {
-        System.out.println("\nModify employee\n̅  ̅  ̅  ̅  ̅  ̅  ̅  ̅  ");
+        System.out.println("\nModify employee");
+        System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
 
         for (Employee employee : employeeList) {
             System.out.print(employee);
         }
 
-        System.out.print("\nCopy and paste the ID you would like to modify: ");
-        String modifyEmployeeID = scanner.nextLine();
+        boolean foundEmployee = false;
+        do {
+            System.out.print("\nCopy and paste the ID you would like to modify: ");
+            String modifyEmployeeID = scanner.nextLine();
 
-        for (Employee employee : Employee.employeeList) {
-            if (Objects.equals(employee.getId(), modifyEmployeeID)) {
+            for (Employee employee : employeeList) {
+                if (Objects.equals(employee.getId(), modifyEmployeeID)) {
+                    foundEmployee = true;
+                    System.out.println("Modifying: " + employee);
 
-                System.out.println("Modifying: " + employee);
+                    // Gender
+                    String newGender = null;
+                    boolean validGender = false;
+                    while (!validGender) {
+                        System.out.print("Enter a gender (male/female/other): ");
+                        newGender = scanner.next();
+                        scanner.nextLine();
 
-                System.out.print("Enter a gender (male/female): ");
-                String newGender = scanner.next();
-                scanner.nextLine();
-                employee.setGender(newGender);
+                        if (newGender.equalsIgnoreCase("male") || newGender.equalsIgnoreCase("female") || newGender.equalsIgnoreCase("other")) {
+                            validGender = true;
+                        } else {
+                            System.out.println("Invalid input. Enter 'male', 'female' or 'other'\n");
+                        }
+                    }
+                    employee.setGender(newGender);
 
-                System.out.print("Enter a new name: ");
-                String newName = scanner.nextLine();
-                employee.setName(newName);
+                    // New name
+                    System.out.print("Enter a new name: ");
+                    String newName = scanner.nextLine();
+                    employee.setName(newName);
 
-                System.out.print("Enter a new Start date: (yyyy-mm-dd): ");
-                String startDateInput = scanner.nextLine();
-                LocalDate employeeStartDate = LocalDate.parse(startDateInput, DateTimeFormatter.ISO_LOCAL_DATE);
-                employee.setStartDate(employeeStartDate);
+                    // Start date
+                    LocalDate employeeStartDate = null;
+                    boolean validStartDate = false;
+                    while (!validStartDate) {
+                        try {
+                            System.out.print("Enter a new start date (yyyy-mm-dd): ");
+                            String startDateInput = scanner.next();
+                            scanner.nextLine();
+                            employeeStartDate = LocalDate.parse(startDateInput, DateTimeFormatter.ISO_LOCAL_DATE);
+                            validStartDate = true;
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Invalid date format. Use yyyy-mm-dd format (example 1992-02-27).\n");
+                        }
+                    }
+                    employee.setStartDate(employeeStartDate);
 
-                System.out.print("Enter new paycheck: ");
-                int newPayCheck = scanner.nextInt();
-                scanner.nextLine();
-                employee.setPaycheck(newPayCheck);
+                    // New paycheck
+                    int newPaycheck = 0;
+                    boolean validPaycheck = false;
+                    while (!validPaycheck) {
+                        try {
+                            System.out.print("Enter new paycheck: ");
+                            newPaycheck = scanner.nextInt();
+                            scanner.nextLine();
+                            validPaycheck = true;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Enter a valid number for the paycheck.\n");
+                            scanner.nextLine();
+                        }
+                    }
+                    employee.setPaycheck(newPaycheck);
 
-                System.out.println("\nUpdated employee: " + employee);
-                returnToEmployeeMenu();
-                return;
+                    System.out.print("\nUpdated employee: " + employee);
+                    returnToEmployeeMenu();
+                    break;
+                }
             }
-        }
-        System.out.println("\nEmployee with ID " + modifyEmployeeID + " not found. Try again.");
-        modifyEmployee();
+            if (!foundEmployee) {
+                System.out.print("Employee with ID " + modifyEmployeeID + " not found. Try again.");
+            }
+
+        } while (!foundEmployee);
     }
 
     public static void calculateAverageWageForMen() {
@@ -128,7 +163,7 @@ public class EmployeeMethods {
 
         double totalSalary = maleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / maleEmployees.size();
-        System.out.println("Average wage for males: " + averageSalary);
+        System.out.println("Average wage for males: $" + averageSalary + "$");
     }
 
     public static void calculateAverageWageForWomen() {
@@ -139,7 +174,7 @@ public class EmployeeMethods {
 
         double totalSalary = femaleEmployees.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / femaleEmployees.size();
-        System.out.println("Average wage for females: " + averageSalary);
+        System.out.println("Average wage for females: $" + averageSalary);
     }
 
     public static void calculateAverageWage() {
@@ -147,10 +182,11 @@ public class EmployeeMethods {
 
         double totalSalary = employeeList.stream().mapToDouble(Employee::getPaycheck).sum();
         double averageSalary = totalSalary / employeeList.size();
-        System.out.println("Average wage for all employees are: " + averageSalary);
+        System.out.println("Average wage for all employees are: $" + averageSalary);
     }
 
     public static void orderEmployeesByHireDate() {
+        System.out.println("\nOrdered by latest hired\n̅  ̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅  ̅̅ ");
         Collections.sort(employeeList, new Comparator<Employee>() {
             @Override
             public int compare(Employee emp1, Employee emp2) {
@@ -158,16 +194,9 @@ public class EmployeeMethods {
             }
         });
 
-        for(Employee employee : employeeList) {
+        for (Employee employee : employeeList) {
             System.out.println("Name: " + employee.getName() + ", Start date: " + employee.getStartDate());
         }
-    }
-
-    public static void returnToMainMenu() {
-        System.out.println(" \nPress Enter to return to the main menu...");
-        scanner.nextLine();
-        scanner.nextLine();
-        MenuChoice.mainMenu();
     }
 
     public static void returnToEmployeeMenu() {
