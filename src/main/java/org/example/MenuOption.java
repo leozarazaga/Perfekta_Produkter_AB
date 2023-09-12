@@ -10,7 +10,6 @@ import static org.example.Intern.Intern.internList;
 import static org.example.MenuChoice.scanner;
 
 public class MenuOption {
-
     public static void menuOption(int choice) {
 
         switch (choice) {
