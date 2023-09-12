@@ -1,4 +1,7 @@
-package org.example;
+package org.example.utils;
+
+import org.example.Employee.Employee;
+import org.example.Intern.Intern;
 
 import java.time.LocalDate;
 

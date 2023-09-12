@@ -1,4 +1,6 @@
-package org.example;
+package org.example.Intern;
+
+import org.example.Staff;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

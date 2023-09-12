@@ -1,7 +1,12 @@
 package org.example;
 
-import static org.example.Employee.employeeList;
-import static org.example.Intern.internList;
+import org.example.Employee.Employee;
+import org.example.Employee.EmployeeMenu;
+import org.example.Intern.Intern;
+import org.example.Intern.InternMenu;
+
+import static org.example.Employee.Employee.employeeList;
+import static org.example.Intern.Intern.internList;
 import static org.example.MenuChoice.scanner;
 
 public class MenuOption {
@@ -10,8 +15,8 @@ public class MenuOption {
 
         switch (choice) {
             case 1:
-            amountOfStaffInTheSystem();
-            returnToMainMenu();
+                amountOfStaffInTheSystem();
+                returnToMainMenu();
                 break;
             case 2:
                 EmployeeMenu.employeeMenu();
@@ -40,8 +45,8 @@ public class MenuOption {
     }
 
     public static void returnToMainMenu() {
-        System.out.print(" \n↩ Press Enter to return to the main menu ");
         scanner.nextLine();
+        System.out.print(" \n↩ Press Enter to return to the main menu ");
         scanner.nextLine();
         MenuChoice.mainMenu();
     }
