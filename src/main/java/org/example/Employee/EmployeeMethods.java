@@ -27,18 +27,51 @@ public class EmployeeMethods {
         System.out.println("\nAdd a new employee");
         System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
 
-
         String id = GenerateRandomID.generateRandomID();
-        System.out.print("Enter gender: (male/female) ");
-        String gender = scanner.nextLine();
+
+        String gender = null;
+        boolean genderInputValid = false;
+        while (!genderInputValid) {
+            System.out.print("Enter gender: (male/female/other) ");
+            String input = scanner.nextLine().toLowerCase();
+            if (input.equals("male") || input.equals("female") || input.equals("other")) {
+                gender = input;
+                genderInputValid = true;
+            } else {
+                System.out.println("Invalid gender. Please enter 'male,' 'female,' or 'other.'");
+            }
+        }
+
         System.out.print("Enter name: (Firstname Surname) ");
         String name = scanner.nextLine();
-        System.out.print("Enter start date: (yyyy-mm-dd) ");
-        String date = scanner.nextLine();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate startDate = LocalDate.parse(date, dateFormatter);
-        System.out.print("Enter salary: ");
-        int salary = scanner.nextInt();
+
+        LocalDate startDate = null;
+        boolean dateInputValid = false;
+        while (!dateInputValid) {
+            try {
+                System.out.print("Enter start date: (yyyy-MM-dd) ");
+                String date = scanner.nextLine();
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                startDate = LocalDate.parse(date, dateFormatter);
+                dateInputValid = true; // Input is valid, exit the loop
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        }
+
+
+        int salary = 0;
+        boolean salaryInputValid = false;
+        while (!salaryInputValid) {
+            try {
+                System.out.print("Enter salary: ");
+                salary = scanner.nextInt();
+                salaryInputValid = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid salary format. Please enter a valid number.");
+                scanner.nextLine();
+            }
+        }
         scanner.nextLine();
 
         Employee employee = new Employee(id, gender, name, startDate, salary);

@@ -91,25 +91,47 @@ public class InternMethods {
     }
 
     public static void addIntern() {
-        System.out.println("\nAdd a new intern ");
+        System.out.println("\nAdd a new intern");
         System.out.println("‾ ‾ ‾ ‾ ‾ ‾ ‾ ‾");
 
         String id = UUID.randomUUID().toString();
 
-        System.out.print("Enter gender of the intern (male/female): ");
-        String gender = scanner.nextLine();
+        String gender = null;
+        boolean genderInputValid = false;
+        while (!genderInputValid) {
+            System.out.print("Enter gender of the intern (male/female/other): ");
+            String input = scanner.nextLine().toLowerCase();
+            if (input.equals("male") || input.equals("female") || input.equals("other")) {
+                gender = input;
+                genderInputValid = true;
+            } else {
+                System.out.println("Invalid gender. Please enter 'male' or 'female'.");
+            }
+        }
+
         System.out.print("Enter name of the intern (Firstname Surname): ");
         String name = scanner.nextLine();
-        System.out.print("Enter the end date of the internship: (yyyy-mm-dd) ");
-        String date = scanner.nextLine();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate endDate = LocalDate.parse(date, dateFormatter);
+
+        LocalDate endDate = null;
+        boolean dateInputValid = false;
+        while (!dateInputValid) {
+            try {
+                System.out.print("Enter the end date of the internship (yyyy-MM-dd): ");
+                String date = scanner.nextLine();
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                endDate = LocalDate.parse(date, dateFormatter);
+                dateInputValid = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        }
+
         System.out.print("Enter a quit message for the intern: ");
         String quitMessage = scanner.nextLine();
 
         Intern intern = new Intern(id, gender, name, endDate, quitMessage);
         Intern.internList.add(intern);
-        System.out.print("\nNew intern added: " + intern);
+        System.out.println("\nNew intern added: " + intern);
         returnToInternMenu();
     }
 
