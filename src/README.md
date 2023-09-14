@@ -17,7 +17,13 @@ to implement any of these patterns just yet.
 
 ### How to install and run the project
 
+This is  a simple application that can be run in any IDE. Our preferred IDE is IntelliJ, but VS Code or
+anything alike can be used. Just clone the project and run the Main-file. 
+
 ### How to use the project
+
+As mentioned above, this is a terminal-based program which only requires communication 
+through the terminal. The program contains mock-up data and doesn't belong to any real person. 
 
 ### Team-members
 
@@ -29,5 +35,8 @@ Leo Zarazaga
 
 Lina Olin
 - Github: LinaOlina
+
+
+If you have any questions regarding this project, don't hesitate to contact any of us on Github!
 
 
